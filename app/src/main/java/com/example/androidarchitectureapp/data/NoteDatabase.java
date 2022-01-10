@@ -28,8 +28,8 @@ public  abstract class NoteDatabase extends RoomDatabase {
     {
         if (instance==null)
         {
-            //here we don't use new keyword to create the new instance as this class is singleton so instead we
-            //use Room.databaseBuilder();
+            //here we don't use new keyword to create the new instance as this class is
+            // singleton so instead we use Room.databaseBuilder();
             instance= Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class,
                     "note_database")
