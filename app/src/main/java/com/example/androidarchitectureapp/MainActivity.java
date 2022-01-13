@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Note note) {
-                Intent intent=new Intent(MainActivity.this, AddEditNoteActivity.class);
-                intent.putExtra(AddEditNoteActivity.EXTRA_ID,note.getId());
-                intent.putExtra(AddEditNoteActivity.EXTRA_TITLE,note.getTitle());
-                intent.putExtra(AddEditNoteActivity.EXTRA_DESCRIPTION,note.getDescription());
-                intent.putExtra(AddEditNoteActivity.EXTRA_PRIORITY,note.getPriority());
+                Intent intent = new Intent(MainActivity.this, AddEditNoteActivity.class);
+                intent.putExtra(AddEditNoteActivity.EXTRA_ID, note.getId());
+                intent.putExtra(AddEditNoteActivity.EXTRA_TITLE, note.getTitle());
+                intent.putExtra(AddEditNoteActivity.EXTRA_DESCRIPTION, note.getDescription());
+                intent.putExtra(AddEditNoteActivity.EXTRA_PRIORITY, note.getPriority());
 
-                startActivityForResult(intent,EDIT_NOTE_REQUEST);
+                startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
     }
@@ -113,11 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
 
-            int id=data.getIntExtra(AddEditNoteActivity.EXTRA_ID,-1);
+            int id = data.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1);
 
-            if(id==-1)
-            {
-                Toast.makeText(this,"Note can't be updaetd",Toast.LENGTH_SHORT).show();
+            if (id == -1) {
+                Toast.makeText(this, "Note can't be updaetd", Toast.LENGTH_SHORT).show();
                 return;
 
             }
@@ -126,12 +125,13 @@ public class MainActivity extends AppCompatActivity {
             String title = data.getStringExtra(AddEditNoteActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
             int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
-            Note  note=new Note(title,description,priority);
+            Note note = new Note(title, description, priority);
             note.setId(id);
             noteViewModel.update(note);
-            Toast.makeText(this,"Note updated",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show();
 
-        }else{ Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
